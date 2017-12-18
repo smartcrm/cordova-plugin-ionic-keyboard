@@ -176,6 +176,7 @@ typedef enum : NSUInteger {
 {
     NSLog(@"CDVIonicKeyboard: updating frame");
     CGRect f = [[UIScreen mainScreen] bounds];
+    CGRect wf = self.webView.frame;
     switch (self.keyboardResizes) {
         case ResizeBody:
         {
@@ -193,7 +194,7 @@ typedef enum : NSUInteger {
         }
         case ResizeNative:
         {
-            [self.webView setFrame:CGRectMake(f.origin.x, f.origin.y, f.size.width, f.size.height - self.paddingBottom)];
+            [self.webView setFrame:CGRectMake(wf.origin.x, wf.origin.y, f.size.width - wf.origin.x, f.size.height - wf.origin.y - self.paddingBottom)];
             break;
         }
         default:
